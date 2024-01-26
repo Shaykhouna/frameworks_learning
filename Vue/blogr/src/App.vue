@@ -3,7 +3,7 @@
     <div class="app-name">Blogr</div>
       <div v-if="authStatus" id="nav">
         <div>{{user.name}}</div>
-        <button class="auth-button" @click="logOut" > Log Out</button>
+        <button class="auth-button" @click="logOut"> Log Out</button>
       </div>
   </header>
   <router-view/>
