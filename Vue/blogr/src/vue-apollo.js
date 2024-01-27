@@ -45,7 +45,7 @@ const defaultOptions = {
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
   // link: myLink
-  link: authLink
+  // link: authLink
 
   // Override default cache
   // cache: myCache
@@ -66,46 +66,47 @@ export const { apolloClient, wsClient } = createApolloClient({
 })
 
 // Call this in the Vue app file
-// export function createProvider (options = {}) {
-//   // Create apollo client
-//   const { apolloClient, wsClient } = createApolloClient({
-//     ...defaultOptions,
-//     ...options,
-//   })
-//   apolloClient.wsClient = wsClient
+export function createProvider (options = {}) {
+  // Create apollo client
+  const { apolloClient, wsClient } = createApolloClient({
+    ...defaultOptions,
+    ...options,
+  })
+  apolloClient.wsClient = wsClient
 
-//   // Create vue apollo provider
-//   const apolloProvider = new VueApollo({
-//     defaultClient: apolloClient,
-//     defaultOptions: {
-//       $query: {
-//         // fetchPolicy: 'cache-and-network',
-//       },
-//     },
-//     errorHandler (error) {
-//       // eslint-disable-next-line no-console
-//       console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
-//     },
-//   })
-
-//   return apolloProvider
-// }
-export function createProvider () {
   // Create vue apollo provider
   const apolloProvider = new VueApollo({
     defaultClient: apolloClient,
     defaultOptions: {
       $query: {
-        fetchPolicy: 'cache-and-network'
-      }
+        // fetchPolicy: 'cache-and-network',
+      },
     },
     errorHandler (error) {
       // eslint-disable-next-line no-console
       console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
-    }
+    },
   })
+
   return apolloProvider
 }
+
+// export function createProvider () {
+//   // Create vue apollo provider
+//   const apolloProvider = new VueApollo({
+//     defaultClient: apolloClient,
+//     defaultOptions: {
+//       $query: {
+//         fetchPolicy: 'cache-and-network'
+//       }
+//     },
+//     errorHandler (error) {
+//       // eslint-disable-next-line no-console
+//       console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
+//     }
+//   })
+//   return apolloProvider
+// }
 
 // Manually call this when user log in
 export async function onLogin (apolloClient, token) {
