@@ -24,8 +24,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['login']),
     loginUser: function () {
-
+      this.login(this.authDetails)
+        .then(() => this.$router.push('/dashboard'))
     }
   }
 }

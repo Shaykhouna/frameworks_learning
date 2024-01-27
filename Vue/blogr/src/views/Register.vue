@@ -27,8 +27,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['register']),
     registerUser: function () {
-
+      this.register(this.authDetails)
+        .then(() => this.$router.push('/dashboard'))
     }
   }
 }
