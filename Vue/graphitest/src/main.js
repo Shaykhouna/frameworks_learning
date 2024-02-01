@@ -1,12 +1,14 @@
-import { createApp, provide } from 'vue'
+import { createApp, provide, h } from 'vue'
+import { DefaultApolloClient } from '@vue/apollo-composable';
 import './style.css'
 import App from './App.vue'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 
+
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: 'https://learn.zone01dakar.sn/api/graphql-engine/v1/graphql',
+  uri: 'https://localhost:8080/graphql',
 })
 
 // Cache implementation

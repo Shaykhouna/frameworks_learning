@@ -1,23 +1,9 @@
 <script setup>
 // import HelloWorld from './components/HelloWorld.vue'
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag'
+// import { useQuery } from '@apollo/client';
+// import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable';
 
-const USER = gql`
-  query{
-    user {
-      id
-      email
-      login
-      auditRatio
-      campus
-      discordId
-    }
-  }
-`;
-
-const { result } = useQuery(USER);
 </script>
 
 <template>

@@ -4,7 +4,7 @@ module.exports = {
       service: {
         name: 'graphitest',
         // URL to the GraphQL API
-        url: 'https://learn.zone01dakar.sn/api/graphql-engine/v1/graphql',
+        url: 'https://localhost:8080/graphql',
       },
       // Files processed by the extension
       includes: [
