@@ -2,10 +2,6 @@
     <nav>
         <header class="block">
             <ul class="header-menu horizontal-list">
-                <!--<li>
-                    <router-link class="header-menu-tab" to="/charts"><span
-                            class="icon fontawesome-user scnd-font-color"></span>Charts</router-link>
-                </li>-->
                 <li>
                     <router-link class="header-menu-tab" to="/dashboard"><span
                             class="icon entypo-cog scnd-font-color"></span>Dashboard</router-link>
@@ -13,6 +9,10 @@
                 <li>
                     <router-link class="header-menu-tab" to="/profile"><span
                             class="icon fontawesome-star-empty scnd-font-color"></span>Profile</router-link>
+                </li>
+                <li>
+                    <a href="#" target="_blank" class="header-menu-tab" to="/charts"><span
+                    class="icon fontawesome-user scnd-font-color"></span>MyGraphiQL</a>
                 </li>
                 <li>
                     <a class="header-menu-tab" href="#"><span
@@ -137,17 +137,19 @@ export default {
                     if (element >= Date.now()) {
                         if (upcoming_first != 0 && element - Date.now() < upcoming_first) {
                             upcoming_first = element - Date.now()
+                            upcoming_first_found = element
                             let path = jsonData.data.registration[index].path.split('/')
                             name = path[path.length - 1]
                         } else if (upcoming_first == 0) {
                             upcoming_first = element - Date.now()
+                            upcoming_first_found = element
                             let path = jsonData.data.registration[index].path.split('/')
                             name = path[path.length - 1]
                         }
                     }
                 }
                 this.data = {}
-                this.data["registration"] = { name: name, countdown: upcoming_first }
+                this.data["registration"] = { name: name, countdown: upcoming_first_found }
 
                 if (this.data.registration.length != 0 || jsonData.data.registration.length != 0) {
                     this.success = true
@@ -190,16 +192,14 @@ export default {
             return milliseconds;
         },
         startCountdown(endTime) {
-
             const countdownInterval = setInterval(() => {
                 let countdownElement = document.getElementById('countdown');
 
                 if (countdownElement) {
                     const now = Date.now();
                     const updatedTimeDifference = endTime - now;
-                            const formattedTimeRemaining = this.formatTimeRemaining(updatedTimeDifference);
-                            console.log(formattedTimeRemaining)
-                    countdownElement.innerHTML = formattedTimeRemaining;
+                    const formattedTimeRemaining = this.formatTimeRemaining(updatedTimeDifference);
+                    countdownElement.textContent = formattedTimeRemaining;
                 }
             }, 1000);
         }

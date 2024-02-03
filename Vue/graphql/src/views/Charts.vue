@@ -7,14 +7,13 @@
   
 <script>
 import NavBar from '@/components/NavBar.vue';
-import Charts from '@/components/BaseCharts.vue';
+// import Charts from '@/components/BaseCharts.vue';
 import '../assets/index.css'
 import { mapState } from 'vuex';
 
 export default {
     name: 'DashboardPage',
     components: {
-        Charts,
         NavBar,
     },
     computed: {
